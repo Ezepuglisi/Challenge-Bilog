@@ -67,7 +67,6 @@ const CalendarGrid: React.FC<CalendarProps> = ({ citas }) => {
     const organizedAppointments = organizeAppointmentsByDay(arrayOfAppointments);
     setAppointmentsByDay(organizedAppointments);
 
-
   }, [appointments])
 
 
@@ -117,8 +116,6 @@ const CalendarGrid: React.FC<CalendarProps> = ({ citas }) => {
           }
         </div>
       }
-
-
     </div>
   );
 };
