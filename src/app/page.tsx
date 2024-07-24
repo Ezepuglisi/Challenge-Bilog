@@ -1,14 +1,8 @@
 
-import CalendarGrid from "@/components/CalendarGrid";
+import CalendarGrid from "@/components/calendarGrid";
 import { getAppointments } from "@/lib/appointments";
 
 export default async function Home() {
-
-  // const today = new Date();
-  // const year = today.getFullYear();
-  // const month = today.getMonth(); // 0-based index
-
-  // const activeWeekIndex = date && Math.floor(date.getDate() / 7);
 
   const appointments = await getAppointments()
 
