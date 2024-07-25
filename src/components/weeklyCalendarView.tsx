@@ -43,6 +43,11 @@ const WeeklyCalendarView: React.FC<WeeklyCalendarViewProps> = ({ activeWeek, app
     const handleOpenModal = (hour: string, period: string, appointments: Appointment[], day: Date) => {
         const hourFormated = hour.split(' ')[0]
 
+        if((Number(convertTo24HourFormat(hour)) > 1830) || (Number(convertTo24HourFormat(hour)) <= 930)){
+            return
+        }
+
+
         const hours = Number(hourFormated.split(':')[0])
         const minutes = Number(hourFormated.split(':')[1])
 
@@ -148,7 +153,7 @@ const WeeklyCalendarView: React.FC<WeeklyCalendarViewProps> = ({ activeWeek, app
                                             return (
                                                 <div
                                                     key={hourIndex}
-                                                    className={`w-full border-t border-r min-h-[45px] cursor-pointer hover:bg-[#d6ffff] ${Number(convertTo24HourFormat(hour.time)) >= 1830 ? 'bg-slate-100 cursor-not-allowed hover:bg-red-200' : (Number(convertTo24HourFormat(hour.time)) < 1000 ? 'bg-slate-100 cursor-not-allowed hover:bg-red-200' : '')}`}
+                                                    className={`w-full border-t border-r min-h-[45px] cursor-pointer hover:bg-[#d6ffff] ${Number(convertTo24HourFormat(hour.time)) > 1830 ? 'bg-slate-100 cursor-not-allowed hover:bg-red-200' : (Number(convertTo24HourFormat(hour.time)) < 1000 ? 'bg-slate-100 cursor-not-allowed hover:bg-red-200' : '')}`}
                                                     onClick={() => handleOpenModal(hour.time, hour.period, appointments, day.date)}
                                                 >
                                                     {appointments

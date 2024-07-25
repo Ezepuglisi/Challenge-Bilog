@@ -79,7 +79,7 @@ const DialogContentView = (props: Props) => {
     const handleSaveAppointment = () => {
 
         if (!newAppointmentTime || !newAppointmentName) {
-            alert('Please select a time and enter a name.');
+            alert('Por favor selecciona un horario e ingresa un nombre.');
             return;
         }
 
@@ -108,7 +108,7 @@ const DialogContentView = (props: Props) => {
 
     const handleEditAppointment = () => {
         if (!newAppointmentTime || !newAppointmentName) {
-            alert('Please select a time and enter a name.');
+            alert('Por favor selecciona un horario e ingresa un nombre.');
             return;
         }
 
@@ -193,7 +193,7 @@ const DialogContentView = (props: Props) => {
                     <div>
                         <Select onValueChange={setNewAppointmentTime}>
                             <SelectTrigger className="w-[250px]">
-                                <SelectValue placeholder={newAppointmentTime ? (newAppointmentTime !== '' ? newAppointmentTime : '') : ''} />
+                                <SelectValue placeholder={newAppointmentTime ? (newAppointmentTime !== '' ? newAppointmentTime : 'Selecciona un horario') : 'Selecciona un horario'} />
                             </SelectTrigger>
                             <SelectContent>
                                 {isEditing ?

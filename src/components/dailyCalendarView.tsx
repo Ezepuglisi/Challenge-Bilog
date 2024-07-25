@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { convertTo12HourFormat, formatTo24HourFormat, hoursInDay, isSameDay } from '@/lib/utils';
+import { convertTo12HourFormat, convertTo24HourFormat, formatTo24HourFormat, hoursInDay, isSameDay } from '@/lib/utils';
 import { Appointment } from '@/lib/appointments';
 import useCalendarStore from '@/store/calendar.store';
 import { Dialog } from './ui/dialog';
@@ -41,6 +41,9 @@ const DailyCalendarView: React.FC<DailyCalendarViewProps> = ({ selectedDate, app
 
 
     const handleOpenModal = (hour: string, period: string, appointments: Appointment[], day: Date) => {
+        if((Number(convertTo24HourFormat(hour)) > 1830) || (Number(convertTo24HourFormat(hour)) <= 930)){
+            return
+        }
         const hourFormated = hour.split(' ')[0]
 
         const hours = Number(hourFormated.split(':')[0])
@@ -106,7 +109,7 @@ const DailyCalendarView: React.FC<DailyCalendarViewProps> = ({ selectedDate, app
                                 return (
                                     <div
                                         key={hourIndex}
-                                        className={`w-full p-1 border-t border-r min-h-[35px] cursor-pointer hover:bg-[#d6ffff] flex flex-col transition-all`}
+                                        className={`w-full p-1 border-t border-r min-h-[35px] cursor-pointer hover:bg-[#d6ffff] flex flex-col transition-all ${Number(convertTo24HourFormat(hour.time)) > 1830 ? 'bg-slate-100 cursor-not-allowed hover:bg-red-200' : (Number(convertTo24HourFormat(hour.time)) < 1000 ? 'bg-slate-100 cursor-not-allowed hover:bg-red-200' : '')}`}
                                         onClick={() => handleOpenModal(hour.time, hour.period, appointments, date)}
                                     >
                                         {appointments
